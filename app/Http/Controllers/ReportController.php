@@ -19,11 +19,11 @@ class ReportController extends Controller
   {
     $reports = DB::table('reports')
       ->select(DB::raw('room_type, sum(guests) as total_guests, sum(payment) as total_payment'))
-      ->whereBetween('created_at', [date($from), date($to)])
+      ->whereBetween('created_at', [$from, $to])
       ->groupBy('room_type')
       ->get();
 
-    return view('reports')->with(['reports' => $reports, 'range' => date('F n, Y', strtotime($from)) . ' to ' . date('F n, Y', strtotime($to)), "from" => $from, "to" => $to]);
+    return view('reports')->with(['reports' => $reports, 'range' => date('F d, Y', strtotime($from)) . ' to ' . date('F d, Y', strtotime($to)), "from" => $from, "to" => $to]);
   }
 
   public function download($from, $to)
