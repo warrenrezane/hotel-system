@@ -46,7 +46,7 @@ class ReportController extends Controller
     $document->setValue('from', $from);
     $document->setValue('to', $to);
     $document->setValue('prepared_by', Auth::user()->name);
-    $document->setValue('date', date('F n, Y g:i A'));
+    $document->setValue('date', date('F d, Y g:i A'));
 
     foreach ($reports as $report) {
       $i++;
